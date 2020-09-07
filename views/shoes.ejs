@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <% include ./partials/header %>
+   
+    <title>Login</title>
+</head>
+
+<body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">RedLemon</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/clothing">Clothing</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/shoes">Shoes</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/revenue">Revenue</a>
+                    </li>
+                    
+                  </ul>
+                </div>
+              </nav>
+              <div class ="row">
+                <% for (shoe of shoes) {%>
+                  <div class="col-sm">
+                    <div class="card" style="width: 18rem;">
+                         <img src="/public/images/<%=shoe.image%>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><%=shoe.title%></h5>
+                            <p class="card-text">
+                            <%= shoe.description%><br>
+                            <%= utils.dollar.format(shoe.price)%>
+                            </p>
+                            <form action='/add2cart' method="POST">
+                              <input type="hidden" name="_id" value="<%= shoe._id%>">
+                              <input type="hidden" name="title" value="<%= shoe.title%>">
+                              <input type="hidden" name="price" value="<%= shoe.price%>">
+                              <button type="submit" class="btn btn-primary">Add to ShoppingCart</button>
+                              
+          
+                          </form>
+                          <a href="/showcart" class="btn btn-primary">See your total</a>
+                      </div>
+                      </div>
+          
+                  </div>
+                <% } %> 
+
+              </div>
+              <p>
+                <a href="/" class="btn btn-info btn-lg">
+                  <span class="glyphicon glyphicon-log-out"></span> Log out
+                </a>
+              </p> 
+                <% include ./partials/scripts %>
+          </body>
+</html> 

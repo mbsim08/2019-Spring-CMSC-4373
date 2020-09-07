@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <%include ./partials/header %>
+
+    <title>ShoppingCart</title>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="display-4">ShoppingCart</h1>
+        <a href="/clothing" class="btn btn-primary">Go to Storefront</a>
+        <% if(sc.items.length ==0){ %>
+            <h3>Empty! Buy more</h3>
+        <% } else{ %>
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% for (const item of sc.items) { %>
+                  <tr>
+                    <td><%= item.sbook.title %></td>
+                    <td><%= item.qty %></td>
+                    <td><%= utils.dollar.format(item.sbook.price) %></td>
+                    <td><%= utils.dollar.format(item.sbook.price * item.qty) %></td>
+
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              Grand Total: <%= utils.dollar.format(sc.getTotal()) %>
+            <% } %> <br>
+            <a href="../checkout" class="btn btn-primary">Ready to checkout?</a>
+
+             </div>
+
+
+        <% include ./partials/scripts %>
+
+</body>
+
+</html>

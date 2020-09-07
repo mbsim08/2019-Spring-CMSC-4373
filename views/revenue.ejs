@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <% include ./partials/header %>
+   
+    <title>Login</title>
+</head>
+
+<body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">RedLemon</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/clothing">Clothing</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/shoes">Shoes</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/revenue">Revenue</a>
+                    </li>
+                    
+                  </ul>
+                </div>
+              </nav>
+              <h1>Today's Revenue</h1>
+              <div class="jumbotron">
+                <h1 class="display-4">ShoppingCart</h1>
+                <% if(sc.items.length ==0){ %>
+                    <h3>No money, advertise more!</h3>
+                <% } else{ %>
+                <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Unit Price</th>
+                            <th scope="col">Subtotal</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <% for (const item of sc.items) { %>
+                          <tr>
+                            <td><%= item.sbook.title %></td>
+                            <td><%= item.qty %></td>
+                            <td><%= utils.dollar.format(item.sbook.price) %></td>
+                            <td><%= utils.dollar.format(item.sbook.price * item.qty) %></td>
+        
+                          </tr>
+                          <% } %>
+                        </tbody>
+                      </table>
+                      The money we made today: <%= utils.dollar.format(sc.getTotal()) %>
+                    <% } %> <br>
+        
+                     </div>
+                <% include ./partials/scripts %>
+          </body>
+</html> 

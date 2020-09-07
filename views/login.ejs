@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <% include ./partials/header %>
+    <title>Login</title>
+</head>
+
+<body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">RedLemon</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/clothing">Clothing</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/shoes">Shoes</a>
+                    </li>
+                    
+                  </ul>
+                </div>
+              </nav>
+    <div class="container">
+        <h1>Login</h1>
+        <%if (flash_message.length >0){ %>
+            <div class="alert alert-danger" role="alert"><%= flash_message %></div>
+        <% } %>
+
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <a href="/signup">Not a member?</a>
+    </div>
+    <% include ./partials/scripts %>
+</body>
+
+</html>
